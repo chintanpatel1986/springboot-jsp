@@ -1,6 +1,7 @@
 package com.excellence.springbootjsp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -71,7 +72,8 @@ public class Employee {
     @Column(name = "password", nullable = false, length = 15)
     private String password;
 
-    @NotEmpty(message = "Please Select Department")
+    @Valid
+    @NotNull(message = "Please Select Department")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("nextval('tbl_employee_department_id_seq')")
